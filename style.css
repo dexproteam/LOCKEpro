@@ -1,107 +1,95 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f9f9f9;
+body.cyberpunk {
+  background: #0f0f1a;
+  color: #00ffea;
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
   margin: 0;
   padding: 0;
-  text-align: center;
+  height: 100vh;
 }
 
-header {
-  background: #4a90e2;
-  color: white;
-  padding: 15px;
+header, footer {
+  padding: 10px;
+  background: #1a1a2e;
+  border-bottom: 2px solid #00ffea;
+}
+
+h1 {
+  color: #ff0099;
+  text-shadow: 0 0 10px #ff0099;
 }
 
 .form-box {
-  background: white;
-  padding: 20px;
   margin: 20px auto;
-  width: 90%;
-  max-width: 400px;
+  padding: 20px;
+  max-width: 500px;
+  background: rgba(20,20,40,0.8);
+  border: 2px solid #00ffea;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px #00ffea;
 }
 
-label {
-  display: block;
-  margin: 10px 0 5px;
-  text-align: left;
-}
-
-input {
-  width: 100%;
+input, button {
+  width: 90%;
+  margin: 10px 0;
   padding: 10px;
-  margin-bottom: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
 }
 
 button {
-  background: #4a90e2;
+  background: #ff0099;
   color: white;
-  border: none;
-  padding: 10px;
-  width: 100%;
-  border-radius: 5px;
   cursor: pointer;
 }
 
 button:hover {
-  background: #357abd;
+  background: #ff33aa;
 }
 
 .output-box {
   margin-top: 15px;
 }
 
-.lock-btn {
-  display: inline-block;
-  margin-top: 15px;
-  color: #4a90e2;
-  text-decoration: none;
+.hidden {
+  display: none;
+}
+
+.loading-box {
+  margin-top: 50px;
+  font-size: 20px;
+  color: #ff0099;
+}
+
+.popup {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  background: rgba(0,0,0,0.9);
+  padding: 20px;
+  border: 2px solid red;
+  border-radius: 8px;
+  box-shadow: 0 0 20px red;
+}
+
+.popup img {
+  max-width: 100%;
+  height: auto;
+}
+
+iframe {
+  width: 100%;
+  height: 90vh;
+  border: none;
+  margin-top: 20px;
 }
 
 .ad-banner {
-  margin: 15px auto;
-  padding: 10px;
-  background: #eee;
-  border: 1px solid #ccc;
-}
-
-/* Loading Animation */
-.loading-box {
-  display: none;
-  margin-top: 20px;
-  font-size: 18px;
-  color: #444;
-}
-
-/* Expired */
-.expired-box {
-  display: none;
-  margin-top: 20px;
-}
-.expired-box iframe {
-  width: 100%;
-  height: 300px;
-  border: none;
-}
-
-/* Popup */
-.popup {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  background: white;
-  padding: 15px;
-  border: 2px solid red;
-  border-radius: 10px;
-  z-index: 999;
-}
-.popup img {
-  max-width: 300px;
-}
-.popup button {
   margin-top: 10px;
-  background: red;
+  background: #222;
+  padding: 10px;
+  color: #aaa;
+  border: 1px solid #00ffea;
 }
