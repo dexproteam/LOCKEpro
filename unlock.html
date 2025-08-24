@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Unlock a Link</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>🔓 Unlock Your Link</h1>
+  </header>
+
+  <main class="form-box">
+    <label>Password</label>
+    <input type="password" id="unlock-password" required>
+    <button onclick="unlockLink()">Unlock</button>
+
+    <a href="index.html" class="lock-btn">🔒 Lock a New Link</a>
+  </main>
+
+  <div id="loading" class="loading-box">
+    <p id="loading-text"></p>
+  </div>
+
+  <div id="expired-box" class="expired-box">
+    <iframe src="https://dexproteam.github.io/Expire/"></iframe>
+  </div>
+
+  <!-- Popup -->
+  <div id="popup" class="popup">
+    <img src="https://imgur.com/5jSJnNE.png" alt="Notice">
+    <button id="closeBtn" disabled>Close (4)</button>
+  </div>
+
+  <footer>
+    <div class="ad-banner">[Your Banner Ad Here]</div>
+  </footer>
+</body>
+</html>
