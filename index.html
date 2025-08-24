@@ -2,40 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Lock a Link</title>
+  <title>Lock a Link - Cyberpunk</title>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
 </head>
-<body>
+<body class="cyberpunk">
   <header>
-    <h1>🔒 Lock a Secret Link</h1>
+    <h1>🔒 Lock a Link</h1>
   </header>
 
-  <main class="form-box">
-    <label>Secret Link</label>
-    <input type="url" id="url" placeholder="https://example.com" required>
+  <main>
+    <div class="form-box">
+      <label>Secret Link (must start with https://)</label>
+      <input type="url" id="url" placeholder="https://example.com" required>
 
-    <label>Password</label>
-    <input type="password" id="password" required>
+      <label>Password</label>
+      <input type="password" id="password" placeholder="Enter password">
 
-    <label>Confirm Password</label>
-    <input type="password" id="confirm-password" required>
+      <label>Confirm Password</label>
+      <input type="password" id="confirm-password" placeholder="Re-enter password">
 
-    <label>Expire Date & Time</label>
-    <input type="datetime-local" id="expire">
+      <label>Expire Date & Time</label>
+      <input type="datetime-local" id="expire">
 
-    <button onclick="encryptLink()">Lock Link</button>
+      <button onclick="lockLink()">Generate Locked Link</button>
 
-    <div class="output-box">
-      <label>Locked Link:</label>
-      <input type="text" id="output" readonly>
-      <button onclick="copyOutput()">Copy</button>
+      <div class="output-box">
+        <label>Output</label>
+        <input type="text" id="output" readonly>
+        <button onclick="copyOutput()">Copy</button>
+      </div>
     </div>
   </main>
 
   <footer>
-    <a href="unlock.html">🔓 Unlock a Link</a>
-    <div class="ad-banner">[Your Banner Ad Here]</div>
+    <p>⚡ Cyberpunk Lock System</p>
+    <div class="ad-banner">[Your Ad Banner Here]</div>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
