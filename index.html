@@ -2,42 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Lock a Link - Cyberpunk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lock a Link</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="cyberpunk">
-  <header>
-    <h1>🔒 Lock a Link</h1>
-  </header>
+<body class="cyber-body">
+  <div class="container">
+    <h1 class="title">🔒 Lock a Link</h1>
 
-  <main>
-    <div class="form-box">
-      <label>Secret Link (must start with https://)</label>
+    <div class="form-group">
+      <label>Enter Link</label>
       <input type="url" id="url" placeholder="https://example.com" required>
+    </div>
 
+    <div class="form-group">
       <label>Password</label>
       <input type="password" id="password" placeholder="Enter password">
-
-      <label>Confirm Password</label>
-      <input type="password" id="confirm-password" placeholder="Re-enter password">
-
-      <label>Expire Date & Time</label>
-      <input type="datetime-local" id="expire">
-
-      <button onclick="lockLink()">Generate Locked Link</button>
-
-      <div class="output-box">
-        <label>Output</label>
-        <input type="text" id="output" readonly>
-        <button onclick="copyOutput()">Copy</button>
-      </div>
     </div>
-  </main>
 
-  <footer>
-    <p>⚡ Cyberpunk Lock System</p>
-    <div class="ad-banner">[Your Ad Banner Here]</div>
-  </footer>
+    <div class="form-group">
+      <label>Expiry Date & Time</label>
+      <input type="datetime-local" id="expiry">
+    </div>
+
+    <button onclick="lockLink()">Lock Link</button>
+
+    <div class="output">
+      <label>Locked Link</label>
+      <input type="text" id="output" readonly>
+      <button onclick="copyOutput()">Copy</button>
+    </div>
+  </div>
+
+  <div class="ad-banner">⚡ Cyber Ad Space ⚡</div>
 
   <script src="script.js"></script>
 </body>
