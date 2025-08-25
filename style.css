@@ -1,133 +1,141 @@
-* {
+/* Fullscreen Layout */
+html, body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Orbitron', sans-serif;
-}
-
-html, body {
-  width: 100%;
   height: 100%;
-}
-
-.cyber-body {
-  background: radial-gradient(circle at top, #0f0f1a, #000);
+  width: 100%;
+  font-family: 'Courier New', monospace;
+  background: linear-gradient(135deg, #0f0f0f, #1a0026);
   color: #0ff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  flex-direction: column;
+  overflow: hidden;
 }
 
 .container {
-  background: rgba(20, 20, 40, 0.95);
+  min-height: 100%;
+  width: 100%;
   padding: 20px;
-  border: 2px solid #0ff;
-  border-radius: 12px;
-  box-shadow: 0 0 20px #0ff;
-  width: 95%;
-  max-width: 420px;
-  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .title {
-  font-size: 24px;
-  margin-bottom: 15px;
-  text-shadow: 0 0 15px #0ff;
+  font-size: 2rem;
+  text-shadow: 0 0 8px #0ff, 0 0 12px #f0f;
+  margin-bottom: 20px;
 }
 
-.form-group {
-  margin: 10px 0;
-  text-align: left;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 10px;
+.form-card {
+  background: rgba(0, 0, 0, 0.7);
   border: 2px solid #0ff;
-  background: #000;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 15px #0ff;
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input, textarea, button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  font-size: 1rem;
+}
+
+input, textarea {
+  background: #111;
   color: #0ff;
-  border-radius: 8px;
+  border: 1px solid #0ff;
+}
+
+textarea {
+  height: 80px;
+  resize: none;
 }
 
 button {
   background: #0ff;
-  border: none;
   color: #000;
-  padding: 10px 15px;
-  margin-top: 10px;
-  cursor: pointer;
-  border-radius: 8px;
   font-weight: bold;
+  cursor: pointer;
   transition: 0.3s;
 }
 
 button:hover {
-  background: #00aaff;
+  background: #f0f;
   color: #fff;
-  box-shadow: 0 0 10px #00aaff;
 }
 
-.output {
-  margin-top: 15px;
-}
-
-.output input {
-  width: calc(100% - 60px);
-  display: inline-block;
-}
-
+/* Ads */
 .ad-banner {
-  margin-top: 20px;
-  background: #111;
+  margin-top: 10px;
+  background: #222;
+  color: #888;
   padding: 10px;
-  border: 2px dashed #0ff;
+  width: 90%;
+  max-width: 400px;
   text-align: center;
-  width: 100%;
-  color: #0ff;
+  border-radius: 6px;
+  border: 1px dashed #0ff;
 }
 
-/* Loading Screen */
-#loading-screen {
+/* Loading Animation */
+.fullscreen {
   position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+  inset: 0;
   background: #000;
-  color: #0ff;
   display: flex;
-  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  z-index: 9999;
-  font-size: 20px;
-  text-align: center;
+  justify-content: center;
+  color: #0ff;
+  font-size: 1.5rem;
+}
+
+.loading-text {
+  border-right: 2px solid #0ff;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: typing 3s steps(30, end) infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
 }
 
 /* Popup */
 .popup {
   position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  background: #111;
-  border: 2px solid red;
-  padding: 15px;
-  text-align: center;
-  box-shadow: 0 0 20px red;
-  border-radius: 12px;
-  z-index: 10000;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
 
 .popup img {
-  max-width: 300px;
-  width: 100%;
-  border-radius: 8px;
+  max-width: 90%;
+  border-radius: 10px;
+  box-shadow: 0 0 20px red;
 }
 
 .popup button {
+  margin-top: 15px;
   background: red;
-  color: white;
-  margin-top: 10px;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .hidden {
@@ -136,6 +144,7 @@ button:hover {
 
 iframe {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   border: none;
+  margin-top: 10px;
 }
