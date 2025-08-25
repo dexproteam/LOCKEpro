@@ -7,24 +7,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="loading" class="fullscreen">
-    <div class="loading-text" id="loadingText"></div>
+  <div id="loading" class="loading-screen">
+    <p id="loading-text"></p>
   </div>
 
-  <div id="popup" class="popup hidden">
-    <img src="https://imgur.com/5jSJnNE.png" alt="Popup">
-    <button id="closePopup" disabled>Close (4)</button>
-  </div>
-
-  <div id="unlockContainer" class="container hidden">
-    <h1 class="title">🔓 Unlock Link</h1>
-    <div class="form-card">
-      <input type="password" id="unlockPassword" placeholder="Enter password">
-      <button onclick="unlockLink()">Unlock</button>
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <img src="https://imgur.com/5jSJnNE.png" alt="Popup" />
+      <button id="closeBtn" disabled>Close (4)</button>
     </div>
-    <div class="ad-banner">[ Top Banner Ad ]</div>
-    <div class="ad-banner">[ Bottom Banner Ad ]</div>
-    <iframe id="unlockedFrame" class="hidden"></iframe>
+  </div>
+
+  <div class="container hidden" id="unlockContainer">
+    <h1 class="neon">🔓 Unlock Link</h1>
+    <input type="password" id="unlockPass" placeholder="Enter password">
+    <button onclick="unlockLink()">Unlock</button>
+    <iframe id="resultFrame" style="display:none;" width="100%" height="400px"></iframe>
   </div>
 
   <script src="script.js"></script>
