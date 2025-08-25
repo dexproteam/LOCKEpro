@@ -8,16 +8,19 @@
 </head>
 <body>
   <div class="container">
-    <h1 class="title">🔒 Lock a Link</h1>
-    <div class="form-card">
-      <input type="url" id="url" placeholder="Enter your URL (https://)">
-      <input type="password" id="password" placeholder="Enter password">
-      <input type="datetime-local" id="expiry">
-      <button onclick="lockLink()">Lock Link</button>
-      <textarea id="output" readonly placeholder="Your locked link will appear here..."></textarea>
+    <h1 class="neon">🔐 Lock a Link</h1>
+    <input type="text" id="url" placeholder="Enter your URL">
+    <input type="password" id="password" placeholder="Enter password">
+    <input type="datetime-local" id="expiry">
+
+    <button onclick="lockLink()">Lock Link</button>
+
+    <textarea id="output" readonly placeholder="Locked link will appear here..."></textarea>
+    
+    <div class="output-buttons">
+      <button onclick="copyLink()">Copy Link</button>
+      <button onclick="openLink()">Open Link</button>
     </div>
-    <div class="ad-banner">[ Top Banner Ad ]</div>
-    <div class="ad-banner">[ Bottom Banner Ad ]</div>
   </div>
   <script src="script.js"></script>
 </body>
