@@ -4,39 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lock a Link</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="cyber-body">
+<body>
   <div class="container">
     <h1 class="title">🔒 Lock a Link</h1>
-
-    <div class="form-group">
-      <label>Enter Link</label>
-      <input type="url" id="url" placeholder="https://example.com" required>
-    </div>
-
-    <div class="form-group">
-      <label>Password</label>
+    <div class="form-card">
+      <input type="url" id="url" placeholder="Enter your URL (https://)">
       <input type="password" id="password" placeholder="Enter password">
-    </div>
-
-    <div class="form-group">
-      <label>Expiry Date & Time</label>
       <input type="datetime-local" id="expiry">
+      <button onclick="lockLink()">Lock Link</button>
+      <textarea id="output" readonly placeholder="Your locked link will appear here..."></textarea>
     </div>
-
-    <button onclick="lockLink()">Lock Link</button>
-
-    <div class="output">
-      <label>Locked Link</label>
-      <input type="text" id="output" readonly>
-      <button onclick="copyOutput()">Copy</button>
-    </div>
+    <div class="ad-banner">[ Top Banner Ad ]</div>
+    <div class="ad-banner">[ Bottom Banner Ad ]</div>
   </div>
-
-  <div class="ad-banner">⚡ Cyber Ad Space ⚡</div>
-
   <script src="script.js"></script>
 </body>
 </html>
