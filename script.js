@@ -1,104 +1,94 @@
-// Generate locked link
 function lockLink() {
   const url = document.getElementById("url").value;
-  const pass = document.getElementById("password").value;
-  const confirm = document.getElementById("confirm-password").value;
-  const expire = document.getElementById("expire").value;
+  const password = document.getElementById("password").value;
+  const expiry = document.getElementById("expiry").value;
 
-  if (!url.startsWith("https://")) {
-    alert("Link must start with https://");
-    return;
-  }
-  if (pass !== confirm || pass === "") {
-    alert("Passwords do not match!");
-    return;
-  }
-  if (!expire) {
-    alert("Please set an expire date & time.");
+  if (!url || !password) {
+    alert("Please enter both URL and password.");
     return;
   }
 
-  const data = btoa(JSON.stringify({ url, pass, expire }));
-  const link = `${window.location.origin}${window.location.pathname.replace("index.html","")}unlock.html?data=${data}`;
-  document.getElementById("output").value = link;
+  const data = btoa(JSON.stringify({ url, password, expiry }));
+  const lockedLink = `${window.location.origin}${window.location.pathname.replace("index.html","")}unlock.html?data=${data}`;
+  document.getElementById("output").value = lockedLink;
 }
 
-// Copy link
 function copyOutput() {
-  const out = document.getElementById("output");
-  out.select();
+  const output = document.getElementById("output");
+  output.select();
   document.execCommand("copy");
-  alert("Link copied!");
+  alert("Copied!");
 }
 
-// Unlock page logic
-function startUnlock() {
-  const params = new URLSearchParams(window.location.search);
-  const data = params.get("data");
-  if (!data) return;
+// Unlock Page Logic
+window.onload = function () {
+  if (window.location.pathname.includes("unlock.html")) {
+    const params = new URLSearchParams(window.location.search);
+    const data = params.get("data");
+    if (!data) return;
 
-  const decoded = JSON.parse(atob(data));
-  const now = new Date().getTime();
-  const expireTime = new Date(decoded.expire).getTime();
+    const { url, password, expiry } = JSON.parse(atob(data));
 
-  // Loading animation text
-  const texts = ["Checking Database...", "Searching Your Link...", "Checking Expire Time...", "Please Wait..."];
-  let i = 0;
-  const loadingBox = document.getElementById("loading-text");
-  const interval = setInterval(() => {
-    loadingBox.innerText = texts[i];
-    i++;
-    if (i >= texts.length) {
-      clearInterval(interval);
+    // Show typing loading animation
+    const messages = [
+      "Checking Database...",
+      "Searching Your Link...",
+      "Checking Expire Time...",
+      "Please Wait..."
+    ];
+    let i = 0;
+    const loadingText = document.getElementById("loading-text");
 
-      if (now > expireTime) {
-        // Expired
-        document.getElementById("loading-box").classList.add("hidden");
-        document.getElementById("result-frame").src = "https://dexproteam.github.io/Expire/";
-        document.getElementById("result-frame").classList.remove("hidden");
-        showPopup();
-      } else {
-        // Valid
-        document.getElementById("loading-box").classList.add("hidden");
-        showPopup(() => {
-          document.getElementById("unlock-box").classList.remove("hidden");
-          window._lockedData = decoded;
-        });
+    const interval = setInterval(() => {
+      loadingText.textContent = messages[i];
+      i++;
+      if (i === messages.length) {
+        clearInterval(interval);
+        checkExpiry(url, password, expiry);
       }
-    }
-  }, 1500);
+    }, 1500);
+  }
+};
+
+function checkExpiry(url, password, expiry) {
+  const loadingScreen = document.getElementById("loading-screen");
+  if (expiry && new Date(expiry) < new Date()) {
+    loadingScreen.style.display = "none";
+    const expireFrame = document.getElementById("expire-frame");
+    expireFrame.src = "https://dexproteam.github.io/Expire/";
+    expireFrame.classList.remove("hidden");
+  } else {
+    loadingScreen.style.display = "none";
+    showPopup(url, password);
+  }
 }
 
-// Show popup with countdown
-function showPopup(callback) {
+function showPopup(url, password) {
   const popup = document.getElementById("popup");
-  const closeBtn = document.getElementById("closePopup");
+  const closeBtn = document.getElementById("close-btn");
   popup.classList.remove("hidden");
 
   let count = 4;
-  closeBtn.innerText = `Close (${count})`;
-  const timer = setInterval(() => {
+  const countdown = setInterval(() => {
     count--;
-    closeBtn.innerText = `Close (${count})`;
-    if (count <= 0) {
-      clearInterval(timer);
-      closeBtn.innerText = "Close";
+    closeBtn.textContent = `Close (${count})`;
+    if (count === 0) {
+      clearInterval(countdown);
       closeBtn.disabled = false;
+      closeBtn.textContent = "Close";
       closeBtn.onclick = () => {
         popup.classList.add("hidden");
-        if (callback) callback();
+        document.getElementById("unlock-container").classList.remove("hidden");
+        window._lockedData = { url, password };
       };
     }
   }, 1000);
 }
 
-// Unlock the link
 function unlockLink() {
-  const pass = document.getElementById("unlock-password").value;
-  if (pass === window._lockedData.pass) {
-    document.getElementById("unlock-box").classList.add("hidden");
-    document.getElementById("result-frame").src = window._lockedData.url;
-    document.getElementById("result-frame").classList.remove("hidden");
+  const inputPass = document.getElementById("unlock-password").value;
+  if (inputPass === window._lockedData.password) {
+    window.location.href = window._lockedData.url;
   } else {
     alert("Wrong password!");
   }
