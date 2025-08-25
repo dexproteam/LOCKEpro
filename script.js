@@ -4,43 +4,100 @@ function lockLink() {
   const expiry = document.getElementById("expiry").value;
 
   if (!url || !password) {
-    alert("Please enter both URL and password.");
+    alert("Please enter URL and password.");
     return;
   }
 
   const data = btoa(JSON.stringify({ url, password, expiry }));
 
-  // GitHub Pages + Local এ ঠিকভাবে কাজ করার জন্য
   let base = window.location.origin + window.location.pathname;
-  if (base.endsWith("index.html")) {
-    base = base.replace("index.html", "");
-  }
-  if (!base.endsWith("/")) {
-    base += "/";
-  }
+  if (base.endsWith("index.html")) base = base.replace("index.html", "");
+  if (!base.endsWith("/")) base += "/";
 
   const lockedLink = `${base}unlock.html?data=${data}`;
-
-  // Output বক্সে লিংক দেখানো
-  const outputBox = document.getElementById("output");
-  outputBox.value = lockedLink;
+  document.getElementById("output").value = lockedLink;
 }
 
-// Copy Function
 function copyLink() {
   const outputBox = document.getElementById("output");
   if (!outputBox.value) {
-    alert("No link generated yet!");
+    alert("No link generated!");
     return;
   }
-
-  // মোবাইল + ডেস্কটপে কপি করার জন্য
   outputBox.select();
-  outputBox.setSelectionRange(0, 99999);
-
   navigator.clipboard.writeText(outputBox.value).then(() => {
-    alert("Link copied!");
-  }).catch(() => {
-    alert("Failed to copy link.");
+    alert("Copied!");
   });
+}
+
+function openLink() {
+  const link = document.getElementById("output").value;
+  if (link) window.open(link, "_blank");
+}
+
+// ===== UNLOCK PAGE =====
+const params = new URLSearchParams(window.location.search);
+if (params.has("data")) {
+  const data = JSON.parse(atob(params.get("data")));
+
+  // Show loading texts
+  const loadingTexts = [
+    "Checking Database...",
+    "Searching Your Link...",
+    "Checking Expire Time...",
+    "Please Wait..."
+  ];
+  let i = 0;
+  const loadingEl = document.getElementById("loading-text");
+  const interval = setInterval(() => {
+    if (loadingEl) loadingEl.textContent = loadingTexts[i];
+    i++;
+    if (i >= loadingTexts.length) {
+      clearInterval(interval);
+      document.getElementById("loading").style.display = "none";
+
+      // Expiry check
+      if (data.expiry && new Date(data.expiry) < new Date()) {
+        document.getElementById("resultFrame").style.display = "block";
+        document.getElementById("resultFrame").src = "https://dexproteam.github.io/Expire/";
+      } else {
+        showPopup(() => {
+          document.getElementById("unlockContainer").classList.remove("hidden");
+          window.lockedData = data;
+        });
+      }
+    }
+  }, 1500);
+}
+
+function showPopup(callback) {
+  const popup = document.getElementById("popup");
+  const btn = document.getElementById("closeBtn");
+  let count = 4;
+  popup.style.visibility = "visible";
+
+  const countdown = setInterval(() => {
+    btn.textContent = `Close (${count})`;
+    count--;
+    if (count < 0) {
+      clearInterval(countdown);
+      btn.disabled = false;
+      btn.textContent = "Close";
+      btn.onclick = () => {
+        popup.style.visibility = "hidden";
+        if (callback) callback();
+      };
+    }
+  }, 1000);
+}
+
+function unlockLink() {
+  const pass = document.getElementById("unlockPass").value.trim();
+  if (pass === window.lockedData.password) {
+    const frame = document.getElementById("resultFrame");
+    frame.style.display = "block";
+    frame.src = window.lockedData.url;
+  } else {
+    alert("Wrong password!");
+  }
 }
