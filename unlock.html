@@ -2,37 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Unlock Link - Cyberpunk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unlock Link</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="cyberpunk" onload="startUnlock()">
-  <header>
-    <h1>🔓 Unlock Link</h1>
-  </header>
+<body class="cyber-body">
+  <div id="loading-screen">
+    <p id="loading-text"></p>
+  </div>
 
-  <main>
-    <div id="loading-box" class="loading-box">
-      <p id="loading-text"></p>
-    </div>
+  <div id="popup" class="popup hidden">
+    <img src="https://imgur.com/5jSJnNE.png" alt="Popup">
+    <button id="close-btn" disabled>Close (4)</button>
+  </div>
 
-    <div id="popup" class="popup hidden">
-      <img src="https://imgur.com/5jSJnNE.png" alt="Popup">
-      <button id="closePopup" disabled>Close (4)</button>
-    </div>
-
-    <div id="unlock-box" class="form-box hidden">
+  <div class="container hidden" id="unlock-container">
+    <h1 class="title">🔑 Unlock Link</h1>
+    <div class="form-group">
       <label>Password</label>
-      <input type="password" id="unlock-password" placeholder="Enter password">
-      <button onclick="unlockLink()">Unlock</button>
-      <a href="index.html" class="back-btn">Lock a Link</a>
+      <input type="password" id="unlock-password">
     </div>
+    <button onclick="unlockLink()">Unlock</button>
 
-    <iframe id="result-frame" class="hidden"></iframe>
-  </main>
+    <div class="ad-banner">🚀 Banner Ad Here 🚀</div>
+  </div>
 
-  <footer>
-    <div class="ad-banner">[Your Ad Banner Here]</div>
-  </footer>
+  <iframe id="expire-frame" class="hidden" src=""></iframe>
 
   <script src="script.js"></script>
 </body>
