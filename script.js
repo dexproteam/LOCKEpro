@@ -10,17 +10,18 @@ function lockLink() {
 
   const data = btoa(JSON.stringify({ url, password, expiry }));
 
-  // Base URL (GitHub Pages + Local দুই জায়গায়ই কাজ করবে)
+  // GitHub Pages + Local এ ঠিকভাবে কাজ করার জন্য
   let base = window.location.origin + window.location.pathname;
   if (base.endsWith("index.html")) {
     base = base.replace("index.html", "");
-  } else if (!base.endsWith("/")) {
+  }
+  if (!base.endsWith("/")) {
     base += "/";
   }
 
   const lockedLink = `${base}unlock.html?data=${data}`;
-  
-  // Output textarea তে লিংক দেখানো
+
+  // Output বক্সে লিংক দেখানো
   const outputBox = document.getElementById("output");
   outputBox.value = lockedLink;
 }
@@ -32,13 +33,14 @@ function copyLink() {
     alert("No link generated yet!");
     return;
   }
+
+  // মোবাইল + ডেস্কটপে কপি করার জন্য
   outputBox.select();
-  outputBox.setSelectionRange(0, 99999); // Mobile friendly
-  navigator.clipboard.writeText(outputBox.value)
-    .then(() => {
-      alert("Link copied!");
-    })
-    .catch(() => {
-      alert("Failed to copy link.");
-    });
+  outputBox.setSelectionRange(0, 99999);
+
+  navigator.clipboard.writeText(outputBox.value).then(() => {
+    alert("Link copied!");
+  }).catch(() => {
+    alert("Failed to copy link.");
+  });
 }
