@@ -1,132 +1,141 @@
-/* Cyberpunk full screen responsive theme */
-
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-body.cyberpunk {
-  background: #0f0f1a;
-  color: #00ffea;
+  box-sizing: border-box;
   font-family: 'Orbitron', sans-serif;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+}
+
+html, body {
   width: 100%;
-  overflow-x: hidden;
+  height: 100%;
 }
 
-header, footer {
-  padding: 12px;
-  background: #1a1a2e;
-  border-bottom: 2px solid #00ffea;
-  text-align: center;
-}
-
-h1 {
-  color: #ff0099;
-  text-shadow: 0 0 10px #ff0099;
-  font-size: 1.6rem;
-}
-
-main {
-  flex: 1;
+.cyber-body {
+  background: radial-gradient(circle at top, #0f0f1a, #000);
+  color: #0ff;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
   flex-direction: column;
-  width: 100%;
-  padding: 15px;
 }
 
-.form-box {
-  width: 100%;
-  max-width: 500px;
+.container {
+  background: rgba(20, 20, 40, 0.95);
   padding: 20px;
-  background: rgba(20,20,40,0.8);
-  border: 2px solid #00ffea;
-  border-radius: 10px;
-  box-shadow: 0 0 15px #00ffea;
-  margin-bottom: 20px;
+  border: 2px solid #0ff;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #0ff;
+  width: 95%;
+  max-width: 420px;
+  text-align: center;
 }
 
-label {
-  display: block;
+.title {
+  font-size: 24px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 15px #0ff;
+}
+
+.form-group {
+  margin: 10px 0;
   text-align: left;
-  margin: 8px 0 4px;
-  font-size: 14px;
 }
 
-input, button {
+.form-group input {
   width: 100%;
-  margin: 8px 0;
-  padding: 12px;
-  border: none;
-  border-radius: 6px;
-  font-size: 15px;
+  padding: 10px;
+  border: 2px solid #0ff;
+  background: #000;
+  color: #0ff;
+  border-radius: 8px;
 }
 
 button {
-  background: #ff0099;
-  color: white;
+  background: #0ff;
+  border: none;
+  color: #000;
+  padding: 10px 15px;
+  margin-top: 10px;
   cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
   transition: 0.3s;
 }
 
 button:hover {
-  background: #ff33aa;
+  background: #00aaff;
+  color: #fff;
+  box-shadow: 0 0 10px #00aaff;
 }
 
-.output-box {
+.output {
   margin-top: 15px;
 }
 
-.hidden {
-  display: none !important;
+.output input {
+  width: calc(100% - 60px);
+  display: inline-block;
 }
 
-.loading-box {
-  margin-top: 30px;
-  font-size: 18px;
-  color: #ff0099;
+.ad-banner {
+  margin-top: 20px;
+  background: #111;
+  padding: 10px;
+  border: 2px dashed #0ff;
+  text-align: center;
+  width: 100%;
+  color: #0ff;
+}
+
+/* Loading Screen */
+#loading-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #000;
+  color: #0ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+  font-size: 20px;
   text-align: center;
 }
 
+/* Popup */
 .popup {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(0,0,0,0.9);
-  padding: 20px;
+  background: #111;
   border: 2px solid red;
-  border-radius: 8px;
-  box-shadow: 0 0 20px red;
-  z-index: 1000;
-  width: 90%;
-  max-width: 400px;
+  padding: 15px;
   text-align: center;
+  box-shadow: 0 0 20px red;
+  border-radius: 12px;
+  z-index: 10000;
 }
 
 .popup img {
-  max-width: 100%;
-  border-radius: 6px;
+  max-width: 300px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.popup button {
+  background: red;
+  color: white;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
 }
 
 iframe {
   width: 100%;
-  height: calc(100vh - 150px);
+  height: 100vh;
   border: none;
-  margin-top: 20px;
-}
-
-.ad-banner {
-  margin-top: 10px;
-  background: #222;
-  padding: 12px;
-  color: #aaa;
-  border: 1px solid #00ffea;
-  font-size: 14px;
-  text-align: center;
 }
